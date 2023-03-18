@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="styles.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Weather App</title>
 </head>
 <body>
     <div id="container">
-        <h1>hello</h1>
-
-
+        <div id="search">
+            <input type="text" id="city-input">
+            <button id="search-button">search</button>
+        </div>
+        <div id="weather">
+            <div id="city"></div>
+            <div id="temperature"></div>
+            <div id="description"></div>
+            <div id="humidity"></div>
+            <div id="wind"></div>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>

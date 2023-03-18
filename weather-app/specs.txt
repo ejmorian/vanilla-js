@@ -2,11 +2,12 @@
 
 //Here are some features you can include in your weather app:
 
-//Get the user's location and display the current weather conditions for their location
+Get the user's location and display the current weather conditions for their location,
 
-//Allow users to search for weather conditions in a specific location
+Allow users to search for weather conditions in a specific location,
 
-//Display additional weather data such as humidity, wind speed, and the chance of precipitation
+Display additional weather data such as humidity, wind speed, and the chance of precipitation,
 
-//Include a feature to toggle between Celsius and Fahrenheit
-//Add a feature to display the weather forecast for the next few days
+Include a feature to toggle between Celsius and Fahrenheit,
+
+Add a feature to display the weather forecast for the next few days.
