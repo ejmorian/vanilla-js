@@ -3,6 +3,7 @@ let currentCity;
 
 const APIKEY = "a2665728a2c7b60b06b2fc309b36a104";
 
+// Get weather forecast for the next few days
 const getWeatherForecast = (city) => {
 
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}`).then(response => response.json()).then(data => {
@@ -41,7 +42,6 @@ const getWeatherForecast = (city) => {
         `<li>${forecast.time} : ${forecast.temperature}°C : ${forecast.description}</li>`;
     })
 
-    console.log(forecast)
   })
 
 }
@@ -68,11 +68,15 @@ const getCurrentLocation = async () => {
       .then(response => response.json())
       .then(location => {
         let city = location[0].name;
+
         let formatCity;
 
         if (city.includes("City Of ")) {
           formatCity = city.replace("City Of ", "")
+        } else {
+          formatCity = city
         }
+
         resolve(formatCity);
       }).catch(error => {
         reject(console.log(error))
@@ -158,8 +162,9 @@ const init = () => {
   //Display current location weather on click
   searchCurrent.addEventListener('click', () => {
     getCurrentLocation().then(city => {
+      console.log(city)
       currentCity = city;
-      displayWeather(city)
+      displayWeather(city);
       getWeatherForecast(city);
     })
   })
@@ -170,6 +175,7 @@ const init = () => {
     displayWeather(currentCity);
     getWeatherForecast(currentCity);
   });
+
   //toggle temperature on click
   toggle.addEventListener("click", () => {
     toggleTemperature(currentCity)
