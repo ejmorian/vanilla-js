@@ -10,8 +10,6 @@ class Product {
     }
 
 }
-
-
 const products = [
     {
         name: 'Macbook Air',
@@ -30,19 +28,12 @@ const products = [
         price: 1850
     },
 ]
-
 const userCart = []
-let cartTotal = 0;
 
 const displayCart = () => {
-    const total = document.createElement('p')
 
     document.getElementById('show-cart').addEventListener('click', () => {
         document.getElementById('cart').classList.remove('hidden');
-
-        total.innerText = `Total: ${cartTotal}$`;
-        document.getElementById('cart').append(total);
-
 
     })
 
@@ -51,9 +42,23 @@ const displayCart = () => {
     })
 }
 
+const updateCart = () => {
+
+    let cartTotal = 0;
+
+    if (userCart.length !== 0) {
+        userCart.forEach(item => {
+            cartTotal += item.price
+            document.getElementById('total').innerText = `Total: ${cartTotal}$`;
+        })
+    } else {
+        document.getElementById('total').innerText = `Total: ${cartTotal}$`
+        console.log('cart is empty')
+    }
+}
 
 
-const displayProducts = () => {
+const addProducts = () => {
     //create product card
     const displayArea = document.getElementById('products')
 
@@ -76,32 +81,42 @@ const displayProducts = () => {
         product.append(image, name, price, addCart)
         displayArea.append(product)
 
+
+        // add functionality to cart
         addCart.addEventListener("click", () => {
             const cartItem = document.createElement('div');
             const cartItemName = document.createElement('p');
             const cartItemPrice = document.createElement('p');
+            const cartItemRemove = document.createElement('button')
 
+            //add attributes
             cartItem.classList.add('cartItem')
             cartItemName.innerText = `Product: ${item.name}`;
             cartItemPrice.innerText = `Cost: ${item.price}$`
+            cartItemRemove.innerText = 'remove item';
 
-            cartItem.append(cartItemName, cartItemPrice)
-
+            cartItem.append(cartItemName, cartItemPrice, cartItemRemove)
             document.getElementById('cart').append(cartItem)
 
+            //update the current cart array
             userCart.push(item)
-            cartTotal += item.price;
+            updateCart();
 
+            // add ability to remove the item from cart
+            cartItemRemove.addEventListener('click', () => {
+                //update the current cart array
+                cartItem.remove()
+                itemIndex = userCart.indexOf(item)
+                userCart.splice(itemIndex, 1);
+                updateCart();
+            })
         })
-
     })
 }
 
 const init = () => {
-
     displayCart();
-    displayProducts();
-
+    addProducts();
 }
 
 window.onload = init
