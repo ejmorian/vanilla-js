@@ -28,11 +28,9 @@ header {
 }
 
 main {
+    margin: 1rem;
+    padding: 1rem;
     flex-grow: 1;
-}
-
-main>h2 {
-    text-align: center;
 }
 
 main .products {
@@ -55,13 +53,15 @@ main .products {
     left: 50%;
     transform: translate(-50%, -50%);
     min-height: 300px;
-    min-width: 600px;
+    min-width: 400px;
     background-color: #EEE;
-    border: 10px rgb(55, 44, 173) solid;
+    border: 10px rgba(0, 0, 0, 0.567) solid;
     padding: 1rem;
+    border-radius: 10px;
+
 }
 
-.hidden {
+#cart.hidden {
     display: none;
 }
 
@@ -94,6 +94,22 @@ header button {
     border-radius: 10px;
 }
 
+.cart-header,
 .cartItem {
+    display: flex;
+    justify-content: space-between;
     margin: 0.5rem;
+}
+
+#cart {
+    display: flex;
+    flex-direction: column;
+}
+
+#cart-list {
+    flex-grow: 1;
+}
+
+.pay-now {
+    margin: 1rem;
 }

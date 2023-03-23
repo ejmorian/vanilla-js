@@ -85,18 +85,20 @@ const addProducts = () => {
         // add functionality to cart
         addCart.addEventListener("click", () => {
             const cartItem = document.createElement('div');
-            const cartItemName = document.createElement('p');
-            const cartItemPrice = document.createElement('p');
+            const cartItemName = document.createElement('h4');
+            const cartItemPrice = document.createElement('h5');
             const cartItemRemove = document.createElement('button')
 
             //add attributes
             cartItem.classList.add('cartItem')
-            cartItemName.innerText = `Product: ${item.name}`;
+            cartItemName.innerText = `${item.name}`;
+
             cartItemPrice.innerText = `Cost: ${item.price}$`
-            cartItemRemove.innerText = 'remove item';
+            cartItemRemove.innerText = 'remove';
 
             cartItem.append(cartItemName, cartItemPrice, cartItemRemove)
-            document.getElementById('cart').append(cartItem)
+
+            document.getElementById('cart-list').append(cartItem)
 
             //update the current cart array
             userCart.push(item)
