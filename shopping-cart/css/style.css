@@ -12,9 +12,14 @@ body {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 1rem;
+    padding: 1rem;
     border-bottom: solid black 1px;
 }
+
 
 .container {
     display: flex;
@@ -63,4 +68,32 @@ main .products {
 footer {
     border-top: 1px solid black;
     padding: 1rem;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.product h3 {
+    font-size: 1.5rem;
+}
+
+.product span {
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.product button,
+header button {
+    max-width: 100px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.cartItem {
+    margin: 0.5rem;
 }
