@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    font-size: 1.2rem;
+}
+
+.calculator {
+    min-height: 520px;
+    max-width: 320px;
+    background-color: black;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: black solid 2px;
+
+}
+
+.result {
+    background-color: #a2bbcf;
+    min-height: 80px;
+    grid-column: 1/-1;
+}
+
+.clear {
+    background-color: #205b7a;
+    grid-column: span 2;
+}
+
+.output {
+    grid-row: span 2;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+.operator {
+    background-color: #205a7abf;
+}
+
+.number {
+    background-color: #a2bbcf;
+}
