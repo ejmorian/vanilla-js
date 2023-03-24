@@ -1,31 +1,36 @@
+// get reference to board cells
 const cells = document.querySelectorAll('.cell');
 
-const board = {
-    top: ['a', 'b', 'c'],
-    middle: ['x', 'y', 'z'],
-    bottom: ['1', '2', '3']
-}
-
-let playerOne = true;
-let playerTwo = false;
-let boardCount = 0;
-let winner;
-
+//get reference to game over sections
 const displayWinner = document.querySelector('.winner');
 const gameOver = document.querySelector('.game-over');
 const restart = document.querySelector('.restart')
 
+// create an object to represent the board
+const board = {
+    top: ['0', '1', '2'],
+    middle: ['3', '4', '5'],
+    bottom: ['6', '7', '8']
+}
+
+// define player, true is 'X', false is 'O'
+let player = true;
+let boardCapacity = 0;
+let winner;
+
+// restart the game at game over
 restart.addEventListener('click', () => {
     location.reload();
 })
 
-
+//check for winner every turn
 const checkWinner = () => {
     checkVertical();
     checkHorizontal();
     checkDiagonal();
 }
 
+// check for draw every turn
 const checkDraw = () => {
 
     if (winner === undefined) {
@@ -35,7 +40,7 @@ const checkDraw = () => {
     }
 }
 
-
+//check if there are any vertical wins
 const checkVertical = () => {
 
     if (board.top[0] == board.middle[1] && board.middle[1] == board.bottom[2]) {
@@ -49,6 +54,7 @@ const checkVertical = () => {
 
 }
 
+//check if there are any horizontal wins
 const checkHorizontal = () => {
 
     if (board.top[0] == board.top[1] && board.top[1] == board.top[2]) {
@@ -64,6 +70,7 @@ const checkHorizontal = () => {
 
 }
 
+//check if there are any diagonal wins
 const checkDiagonal = () => {
 
     if (board.top[0] == board.middle[0] && board.middle[0] == board.bottom[0]) {
@@ -79,14 +86,19 @@ const checkDiagonal = () => {
 
 }
 
+// allows each cell to be interactive
 cells.forEach((item, index) => {
-    item.addEventListener('click', () => {
 
-        if (playerOne) {
+    const handleClick = () => {
 
+        // X always go first
+        if (player) {
+            //place an 'X' to the cell
             item.textContent = 'X';
-            playerOne = false;
+            //next turn is player 'O'
+            player = false;
 
+            // update the board object
             if (index <= 2) {
                 board.top[index] = 'X';
             }
@@ -98,8 +110,12 @@ cells.forEach((item, index) => {
 
 
         } else {
+            //place an 'O' to the cell
             item.textContent = 'O'
-            playerOne = true;
+            //next turn is player 'O'
+            player = true;
+
+            // update the board object
             if (index <= 2) {
                 board.top[index] = 'O';
             } else if (index <= 5) {
@@ -109,15 +125,23 @@ cells.forEach((item, index) => {
             }
         }
 
-        checkWinner();
-
-
-        if (boardCount >= 8) {
+        // if the board is full check for any final wins, otherwise draw
+        if (boardCapacity >= 8) {
             checkWinner();
             checkDraw();
         }
 
-        boardCount++;
+        // check for winner every turn
+        checkWinner();
 
-    })
+        // updates the board capacity, if full, there are no more possible moves
+        boardCapacity++;
+
+        item.removeEventListener('click', handleClick)
+    }
+
+    //if a cell is clicked do the following
+    item.addEventListener('click', handleClick)
+
+
 })
