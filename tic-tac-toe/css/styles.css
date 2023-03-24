@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    max-width: 500px;
+    background-color: #EEE;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: rgba(192, 126, 126, 0.288);
+    place-items: center;
+}
+
+.cell {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.cell:hover {
+    background-color: aqua;
+}
