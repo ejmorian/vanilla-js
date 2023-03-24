@@ -12,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 12rem;
 }
 
 button {
@@ -41,6 +42,8 @@ button {
 }
 
 .output {
+    background-color: #205b7a;
+
     grid-row: span 2;
 }
 
@@ -54,4 +57,20 @@ button {
 
 .number {
     background-color: #a2bbcf;
+}
+
+.result {
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 2rem;
+    padding: 10px;
+}
+
+
+@media (max-width: 920px) {
+    h1 {
+        display: none;
+    }
 }
