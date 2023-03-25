@@ -25,8 +25,28 @@ form fieldset {
     border-bottom: none;
 }
 
+form input {
+    padding: 2.5px;
+
+}
+
+#cost {
+    max-width: 80px;
+}
+
+#date {
+    max-width: 120px;
+}
+
+#expense-name {
+    min-width: 200px;
+}
+
+
 form button {
-    margin-left: 20px;
+    padding: 2px;
+    width: 30px;
+    margin-left: 3px;
 }
 
 table {
