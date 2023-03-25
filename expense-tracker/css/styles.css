@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    background-color: #EEEE;
+}
+
+.container {
+    max-width: 600px;
+    min-width: 600px;
+    margin: 0 auto;
+
+}
+
+
+form fieldset {
+    padding: 10px;
+
+    border-bottom: none;
+}
+
+form button {
+    margin-left: 20px;
+}
+
+table {
+    min-width: 100%;
+}
+
+table,
+td,
+th {
+    border: solid black 1px;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.table-date,
+.table-price {
+    max-width: 25px;
+}
