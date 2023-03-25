@@ -24,22 +24,32 @@ const expenseList = []
 const createExpense = () => {
     if (date.value && expenseName.value && cost.value) {
         expenseList.push(new Expense(date.value, expenseName.value, cost.value))
+        expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))
+
+
     } else {
         console.log('please fill in all the input fields');
     }
 
 }
 
-const displayExpense = () => {
-    //create html elements to insert the expense data collected
-    const row = document.createElement('tr');
-    const date = document.createElement('td');
-    const name = document.createElement('td');
-    const price = document.createElement('td');
+const updateExpense = () => {
+    // reset table
+    while (table.firstChild) {
+        table.removeChild(table.firstChild);
+    }
 
-
+    //update table
     if (expenseList.length !== 0) {
+
         expenseList.forEach(item => {
+            //create html elements to insert the expense data collected
+            const row = document.createElement('tr');
+            const date = document.createElement('td');
+            const name = document.createElement('td');
+            const price = document.createElement('td');
+
+            console.log(item)
             date.textContent = item.date;
             name.textContent = item.expense;
             price.textContent = "$" + item.cost;
@@ -57,8 +67,10 @@ const init = () => {
         e.preventDefault();
     })
 
-    add.addEventListener('click', createExpense);
-    add.addEventListener('click', displayExpense);
+    add.addEventListener('click', () => {
+        createExpense();
+        updateExpense();
+    });
 }
 
 

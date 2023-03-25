@@ -12,8 +12,8 @@ body {
 }
 
 .container {
-    max-width: 600px;
-    min-width: 600px;
+    max-width: 680px;
+    min-width: 620px;
     margin: 0 auto;
 
 }
