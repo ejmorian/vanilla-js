@@ -1,91 +1,120 @@
-const options = document.querySelectorAll('.answer');
-const [answerA, answerB, answerC, answerD] = options;
-
 const Quiz = [
     {
-        question: "what is 1 + 1?",
-        A: "3",
-        B: "4",
-        C: "8",
-        D: "2",
+        question: "Who is the first member of the Strawhat pirates",
+        answers:
+            [{
+                A: "Nami",
+                correct: false
+            },
+            {
+                B: "Usopp",
+                correct: false
+            },
+            {
+                C: 'Zoro',
+                correct: true
+            },
+            { D: 'Franky', correct: false }]
     },
     {
-        question: "what is 10 * 1?",
-        A: "2",
-        B: "4",
-        C: "3",
-        D: "7",
+        question: "What is the name of Luffy's devil fruit?",
+        answers:
+            [{ A: "Hito-Hito no mi", correct: true },
+            { B: "Gomu-Gomu no mi", correct: false },
+            { C: 'Mera-Mera no mi', correct: false },
+            { D: 'Bara-Bara no mi', correct: false }]
     },
     {
-        question: "what is 100 / 1?",
-        A: "3",
-        B: "4",
-        C: "8",
-        D: "2",
+        question: "What is Nami's dream?",
+        answers:
+            [{ A: "To become a brave warrior of the sea", correct: false },
+            { B: "To become more powerful", correct: false },
+            { C: 'To draw a map of the world', correct: true },
+            { D: 'To find the All-Blue', correct: false }]
     },
     {
-        question: "what is 10 + 1?",
-        A: "3",
-        B: "4",
-        C: "3",
-        D: "2",
+        question: "Who is Ace's father",
+        answers:
+            [{ A: "Roger", correct: true },
+            { B: "Garp", correct: false },
+            { C: 'Dadan', correct: false },
+            { D: 'Kizaru', correct: false }]
     },
+    {
+        question: "Who is the most wanted man in One Piece?",
+        answers:
+            [{ A: "Monkey D Dragon", correct: true },
+            { B: "Shanks", correct: false },
+            { C: 'Trafalgar D Law', correct: false },
+            { D: 'Monkey D Luffy', correct: false }]
+    },
+    {
+        question: "Where did Zoro get Enma?",
+        answers:
+            [{ A: "Sabaodi Arcepelago", correct: true },
+            { B: "Elbaf", correct: false },
+            { C: 'Skypia', correct: false },
+            { D: 'Wano', correct: true }]
+    }
 ]
 
+let score = 0;
+let quizIndex = 0;
+let answer;
+
+const answerButton = document.querySelectorAll('.answer-button');
+
+const showResult = () => {
+
+    document.getElementById('quest').classList.add('hidden');
+
+    document.querySelector('.score').textContent = `Score: ${score}/${Quiz.length}`;
+}
 const checkAnswer = () => {
 
+    Quiz[quizIndex].answers.forEach((option => {
+        if (option.correct) {
+            answer = option[Object.keys(option)[0]]
+        }
+    }))
 }
 
+const nextQuiz = () => {
+    document.querySelector('.quiz-question').textContent = Quiz[quizIndex].question;
 
-const displayQuiz = async () => {
-    const question = document.getElementById('question');
-
-    Quiz.forEach(async quiz => {
-
-        question.innerText = quiz.question;
-        answerA.innerText = quiz.A;
-        answerB.innerText = quiz.B;
-        answerC.innerText = quiz.C;
-        answerD.innerText = quiz.D;
-
-        const userClick = new Promise((resolve) => {
-            answerA.addEventListener('click', () => {
-                console.log('clicked');
-                answerA.removeEventListener('click', () => {
-                    console.log('remove')
-                })
-                resolve();
-            })
-        })
-
-        await userClick;
-        answerA.removeEventListener('click', () => {
-            console.log('remove')
-        })
+    Quiz[quizIndex].answers.forEach((options, index) => {
+        answerButton[index].textContent = options[Object.keys(options)[0]]
     })
-
-}
-
-
-const startQuiz = () => {
-    //get reference to display elements
-
-
-
 }
 
 const init = () => {
-    //homepage to quiz
+    // Start Game
     document.getElementById('start').addEventListener('click', () => {
-        document.querySelector('.home').classList.add('hide');
-        document.querySelector('.questionnaire').classList.remove('hide');
 
-        displayQuiz();
+        document.getElementById('home').classList.add('hidden');
+        document.getElementById('quest').classList.remove('hidden');
+
+        nextQuiz();
     })
+    //Display next question and check answer
+    answerButton.forEach((button) => {
 
-    startQuiz()
+        button.addEventListener('click', () => {
+            checkAnswer()
+            if (button.textContent == answer) {
+                score++;
+            }
 
+            quizIndex++
 
+            if (quizIndex < Quiz.length) {
+                nextQuiz()
+            }
+            else {
+                showResult();
+            }
+        })
+    })
 }
 
 window.onload = init;
