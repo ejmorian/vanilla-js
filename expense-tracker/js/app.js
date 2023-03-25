@@ -50,17 +50,24 @@ const updateExpense = () => {
     //update table
     if (expenseList.length !== 0) {
 
-        expenseList.forEach(item => {
+        expenseList.forEach((item, index) => {
             //create html elements to insert the expense data collected
             const row = document.createElement('tr');
             const date = document.createElement('td');
             const name = document.createElement('td');
             const price = document.createElement('td');
 
+
             console.log(item)
             date.textContent = item.date;
             name.textContent = item.expense;
             price.textContent = "$" + item.cost;
+
+            //click name to remove
+            name.addEventListener('click', () => {
+                expenseList.splice(index, 1);
+                updateExpense();
+            })
 
             row.append(date, name, price);
             table.append(row);
