@@ -65,3 +65,7 @@ th {
 .table-price {
     max-width: 25px;
 }
+
+.hidden {
+    display: none;
+}

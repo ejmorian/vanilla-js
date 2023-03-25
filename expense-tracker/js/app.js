@@ -25,19 +25,27 @@ const createExpense = () => {
     if (date.value && expenseName.value && cost.value) {
         expenseList.push(new Expense(date.value, expenseName.value, cost.value))
         expenseList.sort((a, b) => new Date(a.date) - new Date(b.date))
-
-
     } else {
         console.log('please fill in all the input fields');
     }
 
 }
 
-const updateExpense = () => {
+const resetExpense = () => {
     // reset table
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
+
+}
+
+const updateExpense = () => {
+    resetExpense();
+
+    const total = document.createElement('td')
+    total.setAttribute('colspan', '3')
+    total.style.textAlign = 'right'
+    total.textContent = `Total : $${calculateTotal()}`;
 
     //update table
     if (expenseList.length !== 0) {
@@ -57,9 +65,24 @@ const updateExpense = () => {
             row.append(date, name, price);
             table.append(row);
         })
+
+        table.append(total);
+
+
+
     } else {
         console.log('expense list is empty...')
     }
+}
+
+const calculateTotal = () => {
+    let total = 0;
+
+    expenseList.forEach(item => {
+        total += parseInt(item.cost);
+    })
+
+    return total;
 }
 
 const init = () => {
