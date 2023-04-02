@@ -1,0 +1,14 @@
+.typewriter {
+    animation: blink infinite 1s;
+}
+
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
