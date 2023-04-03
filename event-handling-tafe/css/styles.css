@@ -1,0 +1,33 @@
+.hidden {
+    opacity: 0;
+}
+
+#red {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    background-color: red;
+    transition: 0.5s ease-in;
+}
+
+#blueIn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+    margin: 10px;
+    transition: 0.5s ease-in;
+}
+
+#green {
+    position: relative;
+    background-color: transparent;
+    transition: 0.5s ease-in;
+    padding: 10px;
+}
+
+#green.bgGreen {
+    background-color: green;
+}
